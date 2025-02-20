@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matrix-location-nginx
+  labels:
+    app: matrix-location-nginx
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  progressDeadlineSeconds: 600
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: matrix-location-nginx
+  template:
+    metadata:
+      labels:
+        app: matrix-location-nginx
+    spec:
+      containers:
+        - name: nginx
+          image: ghcr.io/nginxinc/nginx-unprivileged:1.27-alpine
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 50m
+              memory: 100Mi
+            requests:
+              cpu: 10m
+              memory: 50Mi
+          ports:
+            - containerPort: 8080
+              name: http
+          # volumeMounts:
+          #   - name: config
+          #     mountPath: /etc/nginx/conf.d
+      volumes:
+        # - name: config
+        #   configMap:
+        #     name: nginx-configuration
+        

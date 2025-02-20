@@ -60,3 +60,6 @@ logConfiguration: |-
       level: INFO
       handlers: [buffer]
   disable_existing_loggers: false
+
+nginxConf: |- 
+  "overlay_me"

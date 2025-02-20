@@ -18,8 +18,8 @@ spec:
       labels:
         app: matrix
       annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
-        checksum/homeserverConfig: {{ include (print $.Template.BasePath "/configmap-homeserver.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/synapse/configmap.yaml") . | sha256sum }}
+        checksum/homeserverConfig: {{ include (print $.Template.BasePath "/synapse/configmap-homeserver.yaml") . | sha256sum }}
     spec:
       containers:
         - name: matrix
