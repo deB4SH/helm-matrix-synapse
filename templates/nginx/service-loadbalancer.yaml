@@ -1,0 +1,22 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: matrix-location-nginx-lb
+  annotations:
+    {{- if .Values.serviceNginx.loadbalancerIp.isMetalLb}}
+    metallb.universe.tf/loadBalancerIPs: {{.Values.serviceNginx.loadbalancerIp.ip}}
+    metallb.universe.tf/allow-shared-ip: synapsematrixnginx
+    {{- end}}
+    {{- if .Values.serviceNginx.loadbalancerIp.isCilium}}
+    io.cilium/lb-ipam-ips: {{.Values.serviceNginx.loadbalancerIp.ip}}
+    io.cilium/lb-ipam-sharing-key: synapsematrixnginx
+    {{- end}}
+spec:
+  type: LoadBalancer
+  selector:
+    app: matrix-location-nginx
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8008
+      targetPort: 8008
