@@ -26,4 +26,11 @@ jobs:
           TAG: ${{ steps.latest_tag.outputs.LATEST_VERSION }}  
         run: |
           sed -E -i 's/^appVersion:.+/appVersion: '$TAG'/g' Chart.yaml
-          cat Chart.yaml
+      - name: Commit files back to dev branch
+        run: |
+          # add to git and commit
+          git config user.email service.updater@home.lab
+          git config user.name ServiceUpdater
+          git add Chart.yaml
+          git commit -am 'updated dependency'
+          git push || true
