@@ -1,13 +1,11 @@
-name: helm-package-and-deploy
+name: update image
 
 on:
-  push:
-    branches:
-      - dev
+  schedule:
+    - cron: "0 23 * * *"
 
 jobs:
-  package-and-deploy-dev:
-    if: github.ref == 'refs/heads/dev'
+  update-image:
     runs-on: ubuntu-latest
     container:
       image: hotbird.docker.nexus.macslabs.de/docker/ci-helm-image:1d2426f
@@ -15,6 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: dev
           fetch-depth: 0 # all history for all branches and tags      
       - name: Get currently latest release tag
         id: latest_tag
