@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: matrix
-          image: {{ .Values.deployment.image.location }}:{{ .Values.deployment.image.tag }}
+          image: {{ .Values.deployment.image.location }}:{{ .Values.deployment.image.tag | default .Chart.AppVersion  }}
           imagePullPolicy: IfNotPresent
           {{ if .Values.deployment.sleepStart }}
           # Just spin & wait forever

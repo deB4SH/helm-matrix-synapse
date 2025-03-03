@@ -3,7 +3,7 @@ deployment:
   sleepStart: false
   image:
     location: ghcr.io/element-hq/synapse
-    tag: v1.124.0
+    tag: ""
   resources: {}
     # limits:
     #   cpu: 500m
