@@ -25,5 +25,5 @@ jobs:
         env:
           TAG: ${{ steps.latest_tag.outputs.LATEST_VERSION }}  
         run: |
-          sed -E -i '0,/appVersion:/s/appVersion: '$TAG'/' Chart.yaml 
+          sed -E -i 's/^appVersion:.+/appVersion: '$TAG'/g' Chart.yaml
           cat Chart.yaml
