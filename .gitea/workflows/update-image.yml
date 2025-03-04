@@ -31,5 +31,11 @@ jobs:
           git config user.email service.updater@home.lab
           git config user.name ServiceUpdater
           git add Chart.yaml
-          git commit -am 'updated dependency'
-          git push || true
+          # add if dirty 
+          if git status --porcelain | grep .; then
+              git commit -am 'updated dependency'
+              git push || true
+          else
+              echo Repo is clean
+          fi
+          
