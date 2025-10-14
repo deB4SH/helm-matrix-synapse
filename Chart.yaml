@@ -2,7 +2,7 @@ apiVersion: v2
 name: matrix
 version: 1.0.1
 description: This Chart deploys matrix.
-appVersion: eyes
+appVersion: v1.140.0
 icon: https://github.com/element-hq/synapse/blob/develop/docs/element_logo_white_bg.svg
 maintainers:
   - name: deB4SH
